@@ -15,7 +15,7 @@ import time
 pyrogram.utils.MIN_CHANNEL_ID = -1009147483647
 
 # Setting SUPPORT_CHAT directly here
-SUPPORT_CHAT = int(os.environ.get("SUPPORT_CHAT", "-1001953724858"))
+SUPPORT_CHAT = int(os.environ.get("SUPPORT_CHAT", "-1001869440885"))
 
 PORT = Config.PORT
 
@@ -23,7 +23,7 @@ class Bot(Client):
 
     def __init__(self):
         super().__init__(
-            name="codeflixbots",
+            name="CrownFlim",
             api_id=Config.API_ID,
             api_hash=Config.API_HASH,
             bot_token=Config.BOT_TOKEN,
@@ -66,7 +66,7 @@ class Bot(Client):
                     ),
                     reply_markup=InlineKeyboardMarkup(
                         [[
-                            InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇs", url="https://t.me/codeflix_bots")
+                            InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇs", url="https://t.me/+X9Pf_uw1SsU3YWM1")
                         ]]
                     )
                 )
