@@ -14,7 +14,7 @@ import time
 
 pyrogram.utils.MIN_CHANNEL_ID = -1009147483647
 
-# Setting SUPPORT_CHAT directly here
+# Updated SUPPORT_CHAT with default value
 SUPPORT_CHAT = int(os.environ.get("SUPPORT_CHAT", "-1001869440885"))
 
 PORT = Config.PORT
@@ -31,7 +31,6 @@ class Bot(Client):
             plugins={"root": "plugins"},
             sleep_threshold=15,
         )
-        # Initialize the bot's start time for uptime calculation
         self.start_time = time.time()
 
     async def start(self, *args, **kwargs):
@@ -40,13 +39,14 @@ class Bot(Client):
         self.mention = me.mention
         self.username = me.username  
         self.uptime = Config.BOT_UPTIME     
+
         if Config.WEBHOOK:
             app = web.AppRunner(await web_server())
             await app.setup()       
             await web.TCPSite(app, "0.0.0.0", PORT).start()     
+
         print(f"{me.first_name} Is Started.....✨️")
 
-        # Calculate uptime using timedelta
         uptime_seconds = int(time.time() - self.start_time)
         uptime_string = str(timedelta(seconds=uptime_seconds))
 
@@ -56,7 +56,6 @@ class Bot(Client):
                 date = curr.strftime('%d %B, %Y')
                 time_str = curr.strftime('%I:%M:%S %p')
                 
-                # Send the message with the photo
                 await self.send_photo(
                     chat_id=chat_id,
                     photo=Config.START_PIC,
@@ -75,3 +74,4 @@ class Bot(Client):
                 print(f"Failed to send message in chat {chat_id}: {e}")
 
 Bot().run()
+
